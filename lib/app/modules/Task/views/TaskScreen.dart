@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:getx_todo_app/app/modules/home/controller/controller.dart';
 
 class TodoScreen extends StatelessWidget {
-  const TodoScreen({super.key});
+  TodoScreen({super.key});
+
+  TaskController controller = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +27,11 @@ class TodoScreen extends StatelessWidget {
               "Add New Task",
               style: text.headline5,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             TextField(
+              controller: controller.textEditingController,
               decoration: InputDecoration(
                 hintText: "Enter your Task",
                 border: OutlineInputBorder(
@@ -36,7 +43,10 @@ class TodoScreen extends StatelessWidget {
               height: 40,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                controller.addTask();
+                Get.back();
+              },
               child: Container(
                 alignment: Alignment.center,
                 width: double.infinity,
