@@ -12,6 +12,7 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme text = Theme.of(context).textTheme;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(title: const Text("Add New Task")),
       body: SafeArea(
